@@ -246,6 +246,7 @@ def simulate_hedging(
 
 
 @app.get("/download/database")
+@app.head("/download/database")
 def download_database():
     """Direct download for the 2.51 MB verified provenance SQLite database."""
     db_path = DATA_DIR / "processed" / "crypto_risk_database.db"
@@ -260,6 +261,7 @@ def download_database():
 
 
 @app.get("/download/paper")
+@app.head("/download/paper")
 def download_paper():
     """Direct download for the academic pre-print paper."""
     paper_path = PAPER_DIR / "crypto_risk_preprint.md"
@@ -274,6 +276,7 @@ def download_paper():
 
 
 @app.get("/download/tables/{filename}")
+@app.head("/download/tables/{filename}")
 def download_table(filename: str):
     """Download specific CSV table from results directory."""
     clean_name = os.path.basename(filename)
