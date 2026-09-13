@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4D Crypto Risk Interactive Lab | Izhaan Intellect</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="navbar">
+    <div class="brand">
+      <span class="status-dot"></span>
+      <strong>IZHAAN INTELLECT</strong>
+      <span class="badge">FORENSIC QUANT LAB</span>
+    </div>
+    <div class="nav-links">
+      <a href="https://izhaanintellect.fun/" target="_blank">Main Hub</a>
+      <a href="https://github.com/rbr48/7Mcrypto" target="_blank">GitHub (Code)</a>
+      <a href="../08_paper/crypto_risk_preprint.html" target="_blank">Pre-Print Paper</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero Intro -->
+    <section class="hero-section">
+      <h1>4D Systemic Risk Manifold & Hysteresis Simulator</h1>
+      <p class="subtitle">
+        Explore the out-of-sample hedging dynamics of M5 LightGBM against the August 5, 2024 global liquidity shock.
+        Tweak threshold sensitivities, toggle electronic Schmitt Trigger memory, and observe real-time drawdown compression.
+      </p>
+    </section>
+
+    <!-- Interactive Controls Card -->
+    <section class="controls-card">
+      <div class="control-group">
+        <label for="thresholdSlider">
+          <strong>Hedge Entry Threshold (&theta;<sub>enter</sub>):</strong>
+          <span id="thresholdVal" class="val-pill">0.30</span>
+        </label>
+        <input type="range" id="thresholdSlider" min="0.10" max="0.40" step="0.05" value="0.30">
+        <div class="slider-ticks">
+          <span>0.10</span>
+          <span>0.20</span>
+          <span>0.30 (Baseline)</span>
+          <span>0.40</span>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label>
+          <strong>Schmitt Trigger Hysteresis Memory:</strong>
+        </label>
+        <div class="toggle-container">
+          <button id="hysteresisBtn" class="btn-toggle active">ENABLED (&Delta; = 0.15 Deadband)</button>
+        </div>
+        <small class="muted-text">Prevents whipsaw boundary chatter by retaining hedge state until stress decays below &theta;<sub>exit</sub>.</small>
+      </div>
+
+      <div class="kpi-banner">
+        <div class="kpi-item">
+          <span class="kpi-label">PORTFOLIO SHARPE</span>
+          <span id="kpiSharpe" class="kpi-value green">2.14</span>
+        </div>
+        <div class="kpi-item">
+          <span class="kpi-label">MAX DRAWDOWN</span>
+          <span id="kpiDrawdown" class="kpi-value gold">-12.9%</span>
+        </div>
+        <div class="kpi-item">
+          <span class="kpi-label">TOTAL HEDGE FLIPS</span>
+          <span id="kpiFlips" class="kpi-value blue">18</span>
+        </div>
+        <div class="kpi-item">
+          <span class="kpi-label">FRICTION SAVED</span>
+          <span id="kpiFriction" class="kpi-value green">+379 bps</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chart Grid -->
+    <section class="grid-2col">
+      <!-- Equity Curve -->
+      <div class="card">
+        <div class="card-header">
+          <h3>Simulated Cumulative Equity: Unhedged vs M5 Dynamic Hedge</h3>
+          <span class="badge-mini">OUT-OF-SAMPLE 2023-2024</span>
+        </div>
+        <div class="chart-box">
+          <canvas id="equityChart"></canvas>
+        </div>
+      </div>
+
+      <!-- 7x7 GIRF Heatmap -->
+      <div class="card">
+        <div class="card-header">
+          <h3>7&times;7 Directional Volatility Spillover Matrix (GIRF)</h3>
+          <span class="badge-mini">ORDER-INVARIANT</span>
+        </div>
+        <div class="matrix-container" id="matrixContainer">
+          <!-- Populated by app.js -->
+        </div>
+        <div class="matrix-legend">
+          <span>Net Transmitter (Source of Risk)</span>
+          <div class="gradient-bar"></div>
+          <span>Net Receiver (Absorbs Shock)</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Forensic Case Evidence -->
+    <section class="card forensic-card">
+      <div class="card-header">
+        <h3>Forensic Finding: Why 1-Bit Hysteresis Outperforms 54,000 Parameter LSTMs</h3>
+      </div>
+      <p>
+        During the August 5, 2024 liquidity shock, recursive Kalman innovations spike instantaneously. Unconstrained deep neural networks (M7 LSTM) suffer from severe phase-lag, entering hedges after 70% of the crash is complete. In contrast, the regularized M5 LightGBM model detects elevated cross-asset contagion 6 hours early, and the Schmitt Trigger deadband locks the portfolio into a 100% short protective stance with zero boundary chatter.
+      </p>
+      <div class="code-snippet">
+        <code>if p_stress &gt;= theta_enter: hedge = 1.0<br>elif p_stress &lt;= theta_exit: hedge = 0.0<br>else: hedge = prev_hedge # Retain state memory</code>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2024 Izhaan Intellect Research &bull; Open-Source BSD-3 License &bull; <a href="https://github.com/rbr48/7Mcrypto">GitHub Repository</a></p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

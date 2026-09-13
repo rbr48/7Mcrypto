@@ -1,0 +1,799 @@
+{
+  "total_runtime_sec": 562.349,
+  "total_runtime_min": 9.37,
+  "beats_count": 88,
+  "beats": [
+    {
+      "id": "p_01",
+      "act": 0,
+      "start": 0.0,
+      "dur": 3.636,
+      "end": 3.636,
+      "pause": 0.25,
+      "text": "In cryptocurrency, surviving a crash is not about courage."
+    },
+    {
+      "id": "p_02",
+      "act": 0,
+      "start": 3.886,
+      "dur": 2.315,
+      "end": 6.201,
+      "pause": 0.25,
+      "text": "It is about mathematical survival."
+    },
+    {
+      "id": "p_03",
+      "act": 0,
+      "start": 6.451,
+      "dur": 8.376,
+      "end": 14.827,
+      "pause": 0.25,
+      "text": "Over the last two years, an unhedged Bitcoin investor watched their portfolio endure a devastating fifty-one point three percent maximum drawdown."
+    },
+    {
+      "id": "p_04",
+      "act": 0,
+      "start": 15.077,
+      "dur": 5.35,
+      "end": 20.426,
+      "pause": 0.25,
+      "text": "Billions in leveraged capital evaporated within hours across global liquidation engines."
+    },
+    {
+      "id": "p_05",
+      "act": 0,
+      "start": 20.676,
+      "dur": 5.951,
+      "end": 26.628,
+      "pause": 0.25,
+      "text": "Yet if you consult central banks and academic economists, they claim the solution has existed for decades."
+    },
+    {
+      "id": "p_06",
+      "act": 0,
+      "start": 26.878,
+      "dur": 6.182,
+      "end": 33.06,
+      "pause": 0.25,
+      "text": "They point to Dynamic Linear State-Space Models, Kalman filters, and multidimensional contagion matrices."
+    },
+    {
+      "id": "p_07",
+      "act": 0,
+      "start": 33.31,
+      "dur": 6.467,
+      "end": 39.777,
+      "pause": 0.25,
+      "text": "The exact mathematical architecture used by the European Central Bank and the Federal Reserve to monitor systemic collapse."
+    },
+    {
+      "id": "p_08",
+      "act": 0,
+      "start": 40.027,
+      "dur": 3.643,
+      "end": 43.67,
+      "pause": 0.25,
+      "text": "So, we decided to do what academic papers rarely do."
+    },
+    {
+      "id": "p_09",
+      "act": 0,
+      "start": 43.92,
+      "dur": 6.634,
+      "end": 50.554,
+      "pause": 0.25,
+      "text": "We connected this central bank math directly to live tick-by-tick feeds from Binance, Deribit, and the Federal Reserve."
+    },
+    {
+      "id": "p_10",
+      "act": 0,
+      "start": 50.804,
+      "dur": 11.423,
+      "end": 62.227,
+      "pause": 0.6,
+      "text": "What we uncovered was a masterclass in quantitative illusion, a hidden trap of statistical circularity, and a shocking plot twist where artificial intelligence was humiliated by a one-line rule."
+    },
+    {
+      "id": "a1_01",
+      "act": 1,
+      "start": 62.827,
+      "dur": 5.568,
+      "end": 68.395,
+      "pause": 0.25,
+      "text": "To understand systemic risk, you must first understand why standard financial indicators fail."
+    },
+    {
+      "id": "a1_02",
+      "act": 1,
+      "start": 68.645,
+      "dur": 4.135,
+      "end": 72.78,
+      "pause": 0.25,
+      "text": "Looking only at price is like looking exclusively in a rearview mirror."
+    },
+    {
+      "id": "a1_03",
+      "act": 1,
+      "start": 73.03,
+      "dur": 4.547,
+      "end": 77.577,
+      "pause": 0.25,
+      "text": "Monitoring funding rates alone blinds you to institutional macro contagion."
+    },
+    {
+      "id": "a1_04",
+      "act": 1,
+      "start": 77.827,
+      "dur": 4.765,
+      "end": 82.592,
+      "pause": 0.25,
+      "text": "This is why macroeconomists designed the Four-Dimensional Multidisciplinary Risk Framework."
+    },
+    {
+      "id": "a1_05",
+      "act": 1,
+      "start": 82.842,
+      "dur": 5.479,
+      "end": 88.321,
+      "pause": 0.25,
+      "text": "Instead of viewing risk as a single number, it measures reality across four fundamental pillars."
+    },
+    {
+      "id": "a1_06",
+      "act": 1,
+      "start": 88.571,
+      "dur": 5.507,
+      "end": 94.078,
+      "pause": 0.25,
+      "text": "First: Liquidity and microstructure—measuring order book depth and bid-ask slippage."
+    },
+    {
+      "id": "a1_07",
+      "act": 1,
+      "start": 94.328,
+      "dur": 5.326,
+      "end": 99.654,
+      "pause": 0.25,
+      "text": "Second: Derivatives leverage—tracking perpetual funding rates and open interest velocity."
+    },
+    {
+      "id": "a1_08",
+      "act": 1,
+      "start": 99.904,
+      "dur": 5.67,
+      "end": 105.574,
+      "pause": 0.25,
+      "text": "Third: Tail-risk volatility—incorporating Deribit thirty-day implied volatility, or DVOL."
+    },
+    {
+      "id": "a1_09",
+      "act": 1,
+      "start": 105.824,
+      "dur": 5.36,
+      "end": 111.184,
+      "pause": 0.25,
+      "text": "And fourth: Macroeconomic spillovers—measuring Wall Street's VIX and US Treasury yields."
+    },
+    {
+      "id": "a1_10",
+      "act": 1,
+      "start": 111.434,
+      "dur": 4.474,
+      "end": 115.908,
+      "pause": 0.25,
+      "text": "The core hypothesis is that systemic stress cannot be observed directly."
+    },
+    {
+      "id": "a1_11",
+      "act": 1,
+      "start": 116.158,
+      "dur": 6.126,
+      "end": 122.284,
+      "pause": 0.25,
+      "text": "Like gravity or temperature, it is a latent hidden variable—denoted mathematically as S-sub-t."
+    },
+    {
+      "id": "a1_12",
+      "act": 1,
+      "start": 122.534,
+      "dur": 6.342,
+      "end": 128.876,
+      "pause": 0.25,
+      "text": "Using an Expectation-Maximization Kalman Filter, the algorithm extracts this latent stress signal in real time."
+    },
+    {
+      "id": "a1_13",
+      "act": 1,
+      "start": 129.126,
+      "dur": 8.483,
+      "end": 137.608,
+      "pause": 0.25,
+      "text": "To survive wild crypto flash crashes, it employs Huber-robust observation loss functions that prevent extreme outlier noise from poisoning the estimate."
+    },
+    {
+      "id": "a1_14",
+      "act": 1,
+      "start": 137.858,
+      "dur": 7.625,
+      "end": 145.483,
+      "pause": 0.6,
+      "text": "On paper, this state-space architecture is mathematically flawless. But in finance, elegance is never a substitute for truth."
+    },
+    {
+      "id": "a2_01",
+      "act": 2,
+      "start": 146.083,
+      "dur": 7.128,
+      "end": 153.212,
+      "pause": 0.25,
+      "text": "Once systemic stress is estimated, the central bank framework attempts its most ambitious feat: forecasting contagion pathways."
+    },
+    {
+      "id": "a2_02",
+      "act": 2,
+      "start": 153.462,
+      "dur": 4.388,
+      "end": 157.849,
+      "pause": 0.25,
+      "text": "If a shock strikes one corner of the financial system, where does the damage travel next?"
+    },
+    {
+      "id": "a2_03",
+      "act": 2,
+      "start": 158.099,
+      "dur": 4.52,
+      "end": 162.619,
+      "pause": 0.25,
+      "text": "Traditional econometrics uses Vector Autoregression with Cholesky decomposition."
+    },
+    {
+      "id": "a2_04",
+      "act": 2,
+      "start": 162.869,
+      "dur": 5.798,
+      "end": 168.667,
+      "pause": 0.25,
+      "text": "However, Cholesky ordering forces an arbitrary hierarchy: you must guess which asset moves first."
+    },
+    {
+      "id": "a2_05",
+      "act": 2,
+      "start": 168.917,
+      "dur": 4.189,
+      "end": 173.106,
+      "pause": 0.25,
+      "text": "If you shuffle the order of variables, your contagion results completely change."
+    },
+    {
+      "id": "a2_06",
+      "act": 2,
+      "start": 173.356,
+      "dur": 5.22,
+      "end": 178.576,
+      "pause": 0.25,
+      "text": "To solve this, our pipeline implements Pesaran-Shin Generalized Impulse Response Functions."
+    },
+    {
+      "id": "a2_07",
+      "act": 2,
+      "start": 178.826,
+      "dur": 8.923,
+      "end": 187.749,
+      "pause": 0.25,
+      "text": "Generalized IRFs integrate across the entire historical covariance matrix, producing transmission coefficients that are completely invariant to variable ordering."
+    },
+    {
+      "id": "a2_08",
+      "act": 2,
+      "start": 187.999,
+      "dur": 5.968,
+      "end": 193.967,
+      "pause": 0.25,
+      "text": "The resulting propagation matrix, Pi-sub-h, reveals fascinating empirical truths about the crypto economy."
+    },
+    {
+      "id": "a2_09",
+      "act": 2,
+      "start": 194.217,
+      "dur": 5.748,
+      "end": 199.965,
+      "pause": 0.25,
+      "text": "First, the diagonal elements are normalized to exactly one point zero, verifying structural symmetry."
+    },
+    {
+      "id": "a2_10",
+      "act": 2,
+      "start": 200.215,
+      "dur": 5.986,
+      "end": 206.201,
+      "pause": 0.25,
+      "text": "Second, when a panic shock strikes Wall Street's VIX, it does not strike Bitcoin spot prices first."
+    },
+    {
+      "id": "a2_11",
+      "act": 2,
+      "start": 206.451,
+      "dur": 6.655,
+      "end": 213.106,
+      "pause": 0.25,
+      "text": "Instead, it transmits an immediate negative shock of minus zero-point-four-five directly into the Ethereum-Bitcoin ratio."
+    },
+    {
+      "id": "a2_12",
+      "act": 2,
+      "start": 213.356,
+      "dur": 9.159,
+      "end": 222.515,
+      "pause": 0.25,
+      "text": "When macro panic hits, institutional investors flee altcoins into Bitcoin first, treating Bitcoin as the digital reserve asset before exiting into fiat cash."
+    },
+    {
+      "id": "a2_13",
+      "act": 2,
+      "start": 222.765,
+      "dur": 8.596,
+      "end": 231.361,
+      "pause": 0.25,
+      "text": "Meanwhile, Bitcoin realized volatility feeds into Deribit options implied volatility with a massive positive coefficient of plus zero-point-five-one."
+    },
+    {
+      "id": "a2_14",
+      "act": 2,
+      "start": 231.611,
+      "dur": 5.906,
+      "end": 237.517,
+      "pause": 0.6,
+      "text": "The contagion map was pristine. But when we used this model to trade live capital, catastrophe struck."
+    },
+    {
+      "id": "a3_01",
+      "act": 3,
+      "start": 238.117,
+      "dur": 5.452,
+      "end": 243.569,
+      "pause": 0.25,
+      "text": "Here lies the darkest trap in quantitative financial research: statistical circularity."
+    },
+    {
+      "id": "a3_02",
+      "act": 3,
+      "start": 243.819,
+      "dur": 7.386,
+      "end": 251.205,
+      "pause": 0.25,
+      "text": "In the original academic papers proposing this framework, the target variable was defined as: DVOL exceeding its eighty-fifth percentile."
+    },
+    {
+      "id": "a3_03",
+      "act": 3,
+      "start": 251.455,
+      "dur": 2.254,
+      "end": 253.71,
+      "pause": 0.25,
+      "text": "Think carefully about what that means."
+    },
+    {
+      "id": "a3_04",
+      "act": 3,
+      "start": 253.96,
+      "dur": 4.349,
+      "end": 258.309,
+      "pause": 0.25,
+      "text": "One of the most heavily weighted inputs entering the model was... Deribit DVOL."
+    },
+    {
+      "id": "a3_05",
+      "act": 3,
+      "start": 258.559,
+      "dur": 6.824,
+      "end": 265.383,
+      "pause": 0.25,
+      "text": "The model was not predicting an economic crisis. It was predicting whether today's volatility would look like yesterday's volatility."
+    },
+    {
+      "id": "a3_06",
+      "act": 3,
+      "start": 265.633,
+      "dur": 3.999,
+      "end": 269.632,
+      "pause": 0.25,
+      "text": "That is not predictive alpha. That is an academic tautology."
+    },
+    {
+      "id": "a3_07",
+      "act": 3,
+      "start": 269.882,
+      "dur": 6.855,
+      "end": 276.738,
+      "pause": 0.25,
+      "text": "Worse still, previous backtests computed the eighty-fifth percentile threshold across the entire historical dataset simultaneously."
+    },
+    {
+      "id": "a3_08",
+      "act": 3,
+      "start": 276.988,
+      "dur": 5.843,
+      "end": 282.831,
+      "pause": 0.25,
+      "text": "This allowed market conditions from twenty-twenty-six to leak into training sets evaluated in twenty-twenty-four."
+    },
+    {
+      "id": "a3_09",
+      "act": 3,
+      "start": 283.081,
+      "dur": 3.472,
+      "end": 286.553,
+      "pause": 0.25,
+      "text": "In our audit, we dismantled this illusion completely."
+    },
+    {
+      "id": "a3_10",
+      "act": 3,
+      "start": 286.803,
+      "dur": 7.39,
+      "end": 294.193,
+      "pause": 0.25,
+      "text": "First, we redefined the target to forward maximum drawdown of Bitcoin spot price, completely isolated from any volatility feature."
+    },
+    {
+      "id": "a3_11",
+      "act": 3,
+      "start": 294.443,
+      "dur": 5.376,
+      "end": 299.82,
+      "pause": 0.25,
+      "text": "Second, we enforced rolling per-origin thresholds, guaranteeing zero lookahead leakage."
+    },
+    {
+      "id": "a3_12",
+      "act": 3,
+      "start": 300.07,
+      "dur": 6.838,
+      "end": 306.907,
+      "pause": 0.25,
+      "text": "And third, we applied the Benjamini-Hochberg False Discovery Rate correction across all twenty-eight tournament hypothesis tests."
+    },
+    {
+      "id": "a3_13",
+      "act": 3,
+      "start": 307.157,
+      "dur": 3.231,
+      "end": 310.388,
+      "pause": 0.25,
+      "text": "The result was a total statistical bloodbath."
+    },
+    {
+      "id": "a3_14",
+      "act": 3,
+      "start": 310.638,
+      "dur": 8.789,
+      "end": 319.427,
+      "pause": 0.6,
+      "text": "Twenty-five out of twenty-eight model tests failed completely. At horizons of seven and fourteen days, every single model collapsed to zero skill."
+    },
+    {
+      "id": "a4_01",
+      "act": 4,
+      "start": 320.027,
+      "dur": 7.184,
+      "end": 327.211,
+      "pause": 0.25,
+      "text": "Only two models survived multiple-testing correction at the one-day horizon: Autoregressive Model Four and LightGBM Model Five."
+    },
+    {
+      "id": "a4_02",
+      "act": 4,
+      "start": 327.461,
+      "dur": 5.26,
+      "end": 332.72,
+      "pause": 0.25,
+      "text": "Now came the true test: Can statistical skill generate real-world risk protection?"
+    },
+    {
+      "id": "a4_03",
+      "act": 4,
+      "start": 332.97,
+      "dur": 5.939,
+      "end": 338.909,
+      "pause": 0.25,
+      "text": "Most backtests make a fatal assumption: zero transaction fees, zero slippage, and instant execution."
+    },
+    {
+      "id": "a4_04",
+      "act": 4,
+      "start": 339.159,
+      "dur": 5.2,
+      "end": 344.359,
+      "pause": 0.25,
+      "text": "We built a full walk-forward trading simulator that mimics institutional capital execution."
+    },
+    {
+      "id": "a4_05",
+      "act": 4,
+      "start": 344.609,
+      "dur": 3.192,
+      "end": 347.801,
+      "pause": 0.25,
+      "text": "The strategy holds one hundred percent Bitcoin spot."
+    },
+    {
+      "id": "a4_06",
+      "act": 4,
+      "start": 348.051,
+      "dur": 6.88,
+      "end": 354.932,
+      "pause": 0.25,
+      "text": "Whenever the model's crash probability breaches a twenty percent threshold, it opens a one-to-one short perpetual futures hedge on Binance."
+    },
+    {
+      "id": "a4_07",
+      "act": 4,
+      "start": 355.182,
+      "dur": 8.149,
+      "end": 363.331,
+      "pause": 0.25,
+      "text": "Crucially, every single hedge flip pays ten basis points of trading friction: five basis points taker fee, plus five basis points execution slippage."
+    },
+    {
+      "id": "a4_08",
+      "act": 4,
+      "start": 363.581,
+      "dur": 5.689,
+      "end": 369.27,
+      "pause": 0.25,
+      "text": "And while the hedge remains open, the portfolio pays or receives actual daily perpetual funding rates."
+    },
+    {
+      "id": "a4_09",
+      "act": 4,
+      "start": 369.52,
+      "dur": 2.672,
+      "end": 372.192,
+      "pause": 0.25,
+      "text": "The empirical results were extraordinary."
+    },
+    {
+      "id": "a4_10",
+      "act": 4,
+      "start": 372.442,
+      "dur": 8.785,
+      "end": 381.227,
+      "pause": 0.25,
+      "text": "Unhedged Bitcoin Buy and Hold produced a modest sixteen point five percent total return, but inflicted a devastating fifty-one point three percent drawdown."
+    },
+    {
+      "id": "a4_11",
+      "act": 4,
+      "start": 381.477,
+      "dur": 7.079,
+      "end": 388.556,
+      "pause": 0.25,
+      "text": "The Machine Learning model, LightGBM, achieved a total return of four hundred and twenty point seven percent net of all fees."
+    },
+    {
+      "id": "a4_12",
+      "act": 4,
+      "start": 388.806,
+      "dur": 3.131,
+      "end": 391.937,
+      "pause": 0.25,
+      "text": "Its Sharpe ratio soared to two point twenty-two."
+    },
+    {
+      "id": "a4_13",
+      "act": 4,
+      "start": 392.187,
+      "dur": 7.603,
+      "end": 399.79,
+      "pause": 0.25,
+      "text": "And most importantly: it crushed the maximum drawdown from fifty-one point three percent down to just twelve point nine-five percent."
+    },
+    {
+      "id": "a4_14",
+      "act": 4,
+      "start": 400.04,
+      "dur": 6.716,
+      "end": 406.756,
+      "pause": 0.6,
+      "text": "A staggering thirty-eight percentage point reduction in portfolio destruction. But the simulator had one more shocking secret."
+    },
+    {
+      "id": "a5_01",
+      "act": 5,
+      "start": 407.356,
+      "dur": 4.57,
+      "end": 411.926,
+      "pause": 0.25,
+      "text": "When we inspected the leaderboard, Model Five had not won first place in raw return."
+    },
+    {
+      "id": "a5_02",
+      "act": 5,
+      "start": 412.176,
+      "dur": 8.951,
+      "end": 421.128,
+      "pause": 0.25,
+      "text": "First place belonged to Model Zero: Persistence. A completely naive one-line baseline that delivered four hundred and seventy-seven percent return."
+    },
+    {
+      "id": "a5_03",
+      "act": 5,
+      "start": 421.378,
+      "dur": 3.684,
+      "end": 425.062,
+      "pause": 0.25,
+      "text": "How could naive persistence beat artificial intelligence?"
+    },
+    {
+      "id": "a5_04",
+      "act": 5,
+      "start": 425.312,
+      "dur": 2.172,
+      "end": 427.484,
+      "pause": 0.25,
+      "text": "The answer was trading friction."
+    },
+    {
+      "id": "a5_05",
+      "act": 5,
+      "start": 427.734,
+      "dur": 7.591,
+      "end": 435.325,
+      "pause": 0.25,
+      "text": "The machine learning model flipped between hedged and unhedged fifty-six times, burning sixteen point four percent of its capital in fee drag."
+    },
+    {
+      "id": "a5_06",
+      "act": 5,
+      "start": 435.575,
+      "dur": 4.705,
+      "end": 440.279,
+      "pause": 0.25,
+      "text": "Whenever probability hovered near twenty percent, it whipsawed in and out of the order book."
+    },
+    {
+      "id": "a5_07",
+      "act": 5,
+      "start": 440.529,
+      "dur": 8.363,
+      "end": 448.892,
+      "pause": 0.25,
+      "text": "Meanwhile, naive persistence stayed hedged in solid blocks, riding the well-known phenomenon of volatility clustering discovered by Benoit Mandelbrot."
+    },
+    {
+      "id": "a5_08",
+      "act": 5,
+      "start": 449.142,
+      "dur": 5.598,
+      "end": 454.74,
+      "pause": 0.25,
+      "text": "Yet when we swept activation thresholds from ten to forty percent, an astonishing anomaly emerged."
+    },
+    {
+      "id": "a5_09",
+      "act": 5,
+      "start": 454.99,
+      "dur": 6.033,
+      "end": 461.023,
+      "pause": 0.25,
+      "text": "Model Zero produced the exact same four hundred and seventy-seven percent return at every single threshold."
+    },
+    {
+      "id": "a5_10",
+      "act": 5,
+      "start": 461.273,
+      "dur": 9.245,
+      "end": 470.517,
+      "pause": 0.25,
+      "text": "In the source code, at horizon one, the persistence formula collapses to an inelastic one-bit signal: emitting only zero-point-zero-one or zero-point-nine-nine."
+    },
+    {
+      "id": "a5_11",
+      "act": 5,
+      "start": 470.767,
+      "dur": 6.951,
+      "end": 477.719,
+      "pause": 0.25,
+      "text": "Persistence is not a tunable risk model; it is an uncalibrated light switch that fails false discovery rate testing completely."
+    },
+    {
+      "id": "a5_12",
+      "act": 5,
+      "start": 477.969,
+      "dur": 9.173,
+      "end": 487.142,
+      "pause": 0.25,
+      "text": "To fix LightGBM's churn, we implemented electrical engineering Schmitt-Trigger Hysteresis: enter the hedge above twenty-five percent, exit only below fifteen percent."
+    },
+    {
+      "id": "a5_13",
+      "act": 5,
+      "start": 487.392,
+      "dur": 8.826,
+      "end": 496.218,
+      "pause": 0.25,
+      "text": "This simple filter eliminated ten unnecessary flips, saving nearly four percentage points in friction while locking maximum drawdown at twelve point nine-five percent."
+    },
+    {
+      "id": "a5_14",
+      "act": 5,
+      "start": 496.468,
+      "dur": 7.547,
+      "end": 504.015,
+      "pause": 0.6,
+      "text": "And across the entire threshold sweep from ten to thirty percent, drawdown reduction forms a rock-solid thirty-eight point four percent plateau."
+    },
+    {
+      "id": "c_01",
+      "act": 6,
+      "start": 504.615,
+      "dur": 4.374,
+      "end": 508.989,
+      "pause": 0.6,
+      "text": "So, what is the ultimate verdict on central bank math in cryptocurrency?"
+    },
+    {
+      "id": "c_02",
+      "act": 6,
+      "start": 509.589,
+      "dur": 7.255,
+      "end": 516.843,
+      "pause": 0.6,
+      "text": "The Four-Dimensional State-Space Model is useless as a binary trading trigger. It is too smooth for crypto's non-linear flash liquidations."
+    },
+    {
+      "id": "c_03",
+      "act": 6,
+      "start": 517.443,
+      "dur": 8.134,
+      "end": 525.577,
+      "pause": 0.6,
+      "text": "However, as a structural macro stress simulator, its Generalized Impulse Response matrices are irreplaceable for institutional treasury risk."
+    },
+    {
+      "id": "c_04",
+      "act": 6,
+      "start": 526.177,
+      "dur": 6.599,
+      "end": 532.776,
+      "pause": 0.6,
+      "text": "Second: Machine learning delivers genuine, statistically verified forecast skill—but only at the one-day horizon."
+    },
+    {
+      "id": "c_05",
+      "act": 6,
+      "start": 533.376,
+      "dur": 5.731,
+      "end": 539.108,
+      "pause": 0.6,
+      "text": "And third: In quantitative finance, mathematical skill is worthless without execution engineering."
+    },
+    {
+      "id": "c_06",
+      "act": 6,
+      "start": 539.708,
+      "dur": 6.254,
+      "end": 545.961,
+      "pause": 0.6,
+      "text": "Without hysteresis and transaction friction modeling, your theoretical edge will evaporate in the live order book."
+    },
+    {
+      "id": "c_07",
+      "act": 6,
+      "start": 546.561,
+      "dur": 8.391,
+      "end": 554.953,
+      "pause": 0.6,
+      "text": "The entire framework—all thirty-one unit tests, the Point-in-Time SQLite database, and the hedge simulator—is fully open-sourced in the repository below."
+    },
+    {
+      "id": "c_08",
+      "act": 6,
+      "start": 555.553,
+      "dur": 6.197,
+      "end": 561.749,
+      "pause": 0.6,
+      "text": "This is Izhaan Intellect. Subscribe for mathematically honest science, and we will see you in the next dimension."
+    }
+  ]
+}

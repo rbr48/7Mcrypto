@@ -63,3 +63,20 @@ desktop.ini
 *.swp
 *.swo
 *~
+.claude/
+
+# Media assets & rendered film binaries
+*.mp4
+*.wav
+*.pcm
+*.mkv
+*.mov
+*.avi
+*.mp3
+*.flac
+05_BGM/
+clips/
+clips_light/
+raw_pcm/
+test_audio/
+
