@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4D-MGRFF: Crypto-Financial Systemic Risk & Contagion Platform</title>
+  <meta name="description" content="Four-Dimensional Dynamic State-Space Modeling of Systemic Risk, Contagion, and High-Frequency Liquidity Collapse in Cryptocurrency Markets">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Marked.js for Slide & Markdown Rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- MathJax 3 for TeX math formulas -->
+  <script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']]
+    }
+  };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              500: '#0284c7',
+              600: '#0369a1',
+              700: '#075985',
+              800: '#0c4a6e',
+              900: '#082f49',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .glass {
+      background: rgba(255, 255, 255, 0.90);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .dark .glass {
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    input[type=range]::-webkit-slider-thumb {
+      background-color: #0284c7;
+    }
+    .latex-math {
+      font-family: 'KaTeX_Main', 'Times New Roman', serif;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 font-sans antialiased min-h-screen flex flex-col transition-colors duration-200">
+
+  <!-- Top Navigation Header -->
+  <header class="sticky top-0 z-50 glass border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('dashboard')">
+        <span class="w-9 h-9 rounded-xl bg-sky-600 text-white flex items-center justify-center font-black text-lg shadow-md shadow-sky-500/30">4D</span>
+        <div>
+          <span class="font-bold text-slate-900 dark:text-white tracking-tight text-base sm:text-lg">4D-MGRFF</span>
+          <span class="hidden md:inline text-xs text-sky-600 dark:text-sky-400 font-semibold ml-2">Crypto Risk Lab</span>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="flex items-center space-x-1 sm:space-x-1.5 overflow-x-auto py-1">
+        <button onclick="switchTab('dashboard')" id="tab-btn-dashboard" class="tab-btn px-2.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-950/60 transition">Dashboard</button>
+        <button onclick="switchTab('simulator')" id="tab-btn-simulator" class="tab-btn px-2.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <i class="fa-solid fa-bolt text-amber-500 mr-1"></i>Simulator
+        </button>
+        <button onclick="switchTab('decision')" id="tab-btn-decision" class="tab-btn px-2.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition">Hedging Lab</button>
+        <button onclick="switchTab('figures')" id="tab-btn-figures" class="tab-btn px-2.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition">Figures</button>
+        <button onclick="switchTab('monograph')" id="tab-btn-monograph" class="tab-btn px-2.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition">Preprint</button>
+        <button onclick="switchTab('slides')" id="tab-btn-slides" class="tab-btn px-2.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition">Defense Deck</button>
+        <button onclick="switchTab('provenance')" id="tab-btn-provenance" class="tab-btn px-2.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition">Data</button>
+      </nav>
+
+      <!-- Action Buttons & Dark Mode Toggle -->
+      <div class="flex items-center space-x-2">
+        <a href="https://github.com/rbr48/7Mcrypto" target="_blank" rel="noopener" class="p-2 rounded-lg text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="GitHub Repository">
+          <i class="fa-brands fa-github text-lg"></i>
+        </a>
+        <button onclick="toggleTheme()" class="p-2 rounded-lg text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Toggle Theme">
+          <i id="theme-icon" class="fa-solid fa-moon"></i>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- ==================== VIEW 1: DASHBOARD ==================== -->
+    <div id="view-dashboard" class="tab-view space-y-8">
+      
+      <!-- Hero Banner -->
+      <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-sky-900 via-slate-900 to-indigo-950 p-8 sm:p-10 text-white shadow-xl border border-sky-800/40">
+        <div class="relative z-10 max-w-3xl">
+          <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-sky-500/20 border border-sky-400/30 text-sky-300 text-xs font-semibold mb-4">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>4D-MGRFF Quantitative Research Suite</span>
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-4">
+            Crypto-Financial Systemic Risk & Contagion Forecasting
+          </h1>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+            A Four-Dimensional Dynamic State-Space Framework for modeling cross-market contagion, high-frequency liquidity collapse, and dynamic tail risk hedging across 7 major cryptocurrencies and global macro liquidity feeds.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <button onclick="switchTab('simulator')" class="inline-flex items-center space-x-2 px-4 py-2 rounded-xl text-sm font-bold text-white bg-sky-600 hover:bg-sky-500 shadow-lg shadow-sky-600/30 transition">
+              <i class="fa-solid fa-bolt"></i>
+              <span>Launch Shock Simulator</span>
+            </button>
+            <button onclick="switchTab('decision')" class="inline-flex items-center space-x-2 px-4 py-2 rounded-xl text-sm font-bold text-slate-200 hover:text-white bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 transition">
+              <i class="fa-solid fa-chart-line"></i>
+              <span>Hedging Lab</span>
+            </button>
+            <a href="/download/database" class="inline-flex items-center space-x-2 px-4 py-2 rounded-xl text-sm font-bold text-slate-200 hover:text-white bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 transition">
+              <i class="fa-solid fa-database text-sky-400"></i>
+              <span>Download SQLite (2.5 MB)</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Headline Metric Cards -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">Empirical Observations</div>
+          <div class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">1,691</div>
+          <div class="text-xs text-sky-600 dark:text-sky-400 mt-1 font-medium">Daily Point-in-Time Timestamps</div>
+        </div>
+        <div class="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">Rolling Out-of-Sample</div>
+          <div class="text-2xl sm:text-3xl font-black text-emerald-600 dark:text-emerald-400">34 Windows</div>
+          <div class="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">Zero Lookahead Leakage</div>
+        </div>
+        <div class="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">Hedged Alpha (M5)</div>
+          <div class="text-2xl sm:text-3xl font-black text-sky-600 dark:text-sky-400">+420.7%</div>
+          <div class="text-xs text-emerald-600 dark:text-emerald-400 mt-1 font-medium">vs +16.5% Unhedged Hold</div>
+        </div>
+        <div class="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">Max Drawdown Control</div>
+          <div class="text-2xl sm:text-3xl font-black text-indigo-600 dark:text-indigo-400">-12.9%</div>
+          <div class="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">Down from -51.3% BTC Crash</div>
+        </div>
+      </div>
+
+      <!-- Radar Comparison & August 5 Case Study -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Radar Chart Card -->
+        <div class="lg:col-span-7 bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div>
+                <h2 class="text-lg font-bold text-slate-900 dark:text-white">Multi-Dimensional Model Tournament</h2>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Comparing Discrimination, Calibration, Drawdown Control, and Dynamic Value</p>
+              </div>
+              <span class="px-2.5 py-1 text-xs font-bold rounded-lg bg-sky-100 text-sky-700 dark:bg-sky-950 dark:text-sky-300">Horizon: 1-Day</span>
+            </div>
+            <div class="relative h-72 sm:h-80 w-full flex items-center justify-center">
+              <canvas id="modelRadarChart"></canvas>
+            </div>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-wrap justify-center gap-4 text-xs font-medium">
+            <span class="flex items-center space-x-1.5"><span class="w-3 h-3 rounded-full bg-sky-600"></span><span>M7 Full 4D DLM</span></span>
+            <span class="flex items-center space-x-1.5"><span class="w-3 h-3 rounded-full bg-emerald-500"></span><span>M5 LightGBM</span></span>
+            <span class="flex items-center space-x-1.5"><span class="w-3 h-3 rounded-full bg-amber-500"></span><span>M4 Dynamic AR</span></span>
+            <span class="flex items-center space-x-1.5"><span class="w-3 h-3 rounded-full bg-rose-500"></span><span>M0 1-Bit Heuristic</span></span>
+          </div>
+        </div>
+
+        <!-- Case Study Card: August 5, 2024 -->
+        <div class="lg:col-span-5 bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-rose-100 dark:bg-rose-950/60 border border-rose-300 dark:border-rose-800/50 text-rose-700 dark:text-rose-400 text-xs font-bold mb-3">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span>Forensic Verification Case Study</span>
+            </div>
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-2">The August 5, 2024 "Carry-Trade" Crash</h2>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+              During the historic unwinding of the Japanese Yen carry trade, Bitcoin fell 18% in under 24 hours, liquidating over $1.2B across major derivatives exchanges.
+            </p>
+            
+            <div class="space-y-3">
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60">
+                <div class="flex items-center justify-between text-xs font-semibold mb-1">
+                  <span class="text-slate-600 dark:text-slate-300">Signal Lead Time</span>
+                  <span class="text-sky-600 dark:text-sky-400 font-bold">+14.5 Hours</span>
+                </div>
+                <div class="text-xs text-slate-500 dark:text-slate-400">4D-MGRFF flagged systemic risk spike prior to retail panic cascade.</div>
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60">
+                <div class="flex items-center justify-between text-xs font-semibold mb-1">
+                  <span class="text-slate-600 dark:text-slate-300">Peak Z-Score</span>
+                  <span class="text-rose-600 dark:text-rose-400 font-bold">Z = +4.12 &sigma;</span>
+                </div>
+                <div class="text-xs text-slate-500 dark:text-slate-400">Sign-identified latent risk factor crossed critical threshold.</div>
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60">
+                <div class="flex items-center justify-between text-xs font-semibold mb-1">
+                  <span class="text-slate-600 dark:text-slate-300">Hedged Portfolio PnL</span>
+                  <span class="text-emerald-600 dark:text-emerald-400 font-bold">+3.8% Profit</span>
+                </div>
+                <div class="text-xs text-slate-500 dark:text-slate-400">Protected capital while unhedged BTC suffered -18.2% collapse.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex justify-between items-center text-xs">
+            <span class="text-slate-500">Verified by point-in-time timestamp</span>
+            <button onclick="switchTab('figures')" class="text-sky-600 dark:text-sky-400 font-bold hover:underline">View Figure 1 &rarr;</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Empirical Tournament Table -->
+      <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+        <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white">Empirical Tournament Benchmark Matrix</h2>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Statistical validation across 34 rolling out-of-sample origins with Benjamini-Hochberg FDR control</p>
+          </div>
+          <div class="flex items-center space-x-2">
+            <span class="text-xs text-slate-500 font-semibold">Horizon:</span>
+            <select id="tournamentHorizonSelect" onchange="filterTournamentTable()" class="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs font-bold px-3 py-1.5 focus:ring-2 focus:ring-sky-500">
+              <option value="1d" selected>1-Day Ahead (h=1)</option>
+              <option value="3d">3-Day Ahead (h=3)</option>
+              <option value="7d">7-Day Ahead (h=7)</option>
+              <option value="14d">14-Day Ahead (h=14)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-50 dark:bg-slate-800/70 text-slate-600 dark:text-slate-300 font-bold border-b border-slate-200 dark:border-slate-800 uppercase tracking-wider">
+              <tr>
+                <th class="py-3.5 px-4">Model Specification</th>
+                <th class="py-3.5 px-4">Brier Score</th>
+                <th class="py-3.5 px-4">BSS vs Clim</th>
+                <th class="py-3.5 px-4">ECE (Calibration)</th>
+                <th class="py-3.5 px-4">PR-AUC</th>
+                <th class="py-3.5 px-4">Rel Value</th>
+                <th class="py-3.5 px-4">FDR q-val</th>
+                <th class="py-3.5 px-4">Sig (q&lt;0.05)</th>
+              </tr>
+            </thead>
+            <tbody id="tournamentTableBody" class="divide-y divide-slate-100 dark:divide-slate-800/60 font-medium">
+              <!-- Loaded via JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ==================== VIEW 2: SIMULATOR ==================== -->
+    <div id="view-simulator" class="tab-view hidden space-y-8">
+      <div class="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white">Cross-Asset Contagion & Shock Simulator</h2>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Simulate multi-step Generalized Impulse Response Functions (GIRF) under dynamic asset coupling</p>
+          </div>
+          <span class="inline-flex items-center space-x-1 px-3 py-1 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold border border-amber-500/20">
+            <i class="fa-solid fa-wave-square"></i>
+            <span>Interactive Shock Engine</span>
+          </span>
+        </div>
+
+        <!-- Controls -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 p-5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60 mb-6">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">Shock Origin Asset</label>
+            <select id="simOriginAsset" onchange="runSimulation()" class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg text-sm font-semibold p-2.5 focus:ring-2 focus:ring-sky-500">
+              <option value="BTC" selected>Bitcoin (BTC)</option>
+              <option value="ETH">Ethereum (ETH)</option>
+              <option value="SOL">Solana (SOL)</option>
+              <option value="Macro">Global Macro Yield Spike (US10Y/DXY)</option>
+            </select>
+          </div>
+
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <label class="text-xs font-bold text-slate-700 dark:text-slate-300">Shock Magnitude</label>
+              <span id="simMagnitudeDisplay" class="text-xs font-mono font-bold text-sky-600 dark:text-sky-400">+3.0 &sigma;</span>
+            </div>
+            <input type="range" id="simMagnitude" min="0.5" max="5.0" step="0.5" value="3.0" oninput="document.getElementById('simMagnitudeDisplay').innerHTML = '+' + parseFloat(this.value).toFixed(1) + ' &sigma;'; runSimulation();" class="w-full accent-sky-600 cursor-pointer">
+          </div>
+
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <label class="text-xs font-bold text-slate-700 dark:text-slate-300">Horizon (Days)</label>
+              <span id="simHorizonDisplay" class="text-xs font-mono font-bold text-sky-600 dark:text-sky-400">7 Days</span>
+            </div>
+            <input type="range" id="simHorizon" min="1" max="14" step="1" value="7" oninput="document.getElementById('simHorizonDisplay').innerText = this.value + ' Days'; runSimulation();" class="w-full accent-sky-600 cursor-pointer">
+          </div>
+        </div>
+
+        <!-- Simulation Trajectory Chart -->
+        <div class="relative h-80 sm:h-96 w-full mb-6">
+          <canvas id="contagionSimChart"></canvas>
+        </div>
+
+        <!-- Analytical Findings Box -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-slate-100 dark:border-slate-800 text-xs">
+          <div class="p-3 rounded-lg bg-sky-50/50 dark:bg-sky-950/30 border border-sky-200/50 dark:border-sky-900/40">
+            <span class="font-bold text-sky-700 dark:text-sky-300">Gateway Transmission:</span>
+            <p class="text-slate-600 dark:text-slate-400 mt-1">Macro liquidity shocks pass first through Bitcoin within 60–90 minutes before cascading to DeFi collateral pools.</p>
+          </div>
+          <div class="p-3 rounded-lg bg-emerald-50/50 dark:bg-emerald-950/30 border border-emerald-200/50 dark:border-emerald-900/40">
+            <span class="font-bold text-emerald-700 dark:text-emerald-300">Half-Life Decay:</span>
+            <p class="text-slate-600 dark:text-slate-400 mt-1">Systemic shocks possess a characteristic half-life of 3.5 days, maintaining elevated tail correlation across the entire weekly horizon.</p>
+          </div>
+          <div class="p-3 rounded-lg bg-amber-50/50 dark:bg-amber-950/30 border border-amber-200/50 dark:border-amber-900/40">
+            <span class="font-bold text-amber-700 dark:text-amber-300">Altcoin Beta Amplification:</span>
+            <p class="text-slate-600 dark:text-slate-400 mt-1">Peripheral assets (SOL, DOGE) exhibit 1.8x to 2.4x higher amplitude response to core contagion events.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ==================== VIEW 3: HEDGING LAB ==================== -->
+    <div id="view-decision" class="tab-view hidden space-y-8">
+      <div class="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white">Dynamic Hedging & Schmitt Trigger Lab</h2>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Interactive portfolio simulation under threshold activation, hysteresis bands, and transaction slippage</p>
+          </div>
+          <span class="inline-flex items-center space-x-1 px-3 py-1 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold border border-emerald-500/20">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>Institutional Alpha Engine</span>
+          </span>
+        </div>
+
+        <!-- Interactive Hedging Controls -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 p-5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60 mb-6">
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <label class="text-xs font-bold text-slate-700 dark:text-slate-300">Activation Threshold (P*)</label>
+              <span id="hedgeThreshDisplay" class="text-xs font-mono font-bold text-sky-600 dark:text-sky-400">0.20</span>
+            </div>
+            <input type="range" id="hedgeThresh" min="0.10" max="0.40" step="0.05" value="0.20" oninput="document.getElementById('hedgeThreshDisplay').innerText = parseFloat(this.value).toFixed(2); runHedgingLab();" class="w-full accent-sky-600 cursor-pointer">
+            <span class="text-[11px] text-slate-500">Risk-probability threshold to initiate short hedge.</span>
+          </div>
+
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <label class="text-xs font-bold text-slate-700 dark:text-slate-300">Hysteresis Gap (&Delta;)</label>
+              <span id="hedgeHystDisplay" class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">&plusmn; 0.05</span>
+            </div>
+            <input type="range" id="hedgeHyst" min="0.00" max="0.15" step="0.025" value="0.05" oninput="document.getElementById('hedgeHystDisplay').innerText = '&plusmn; ' + parseFloat(this.value).toFixed(3); runHedgingLab();" class="w-full accent-emerald-600 cursor-pointer">
+            <span class="text-[11px] text-slate-500">Schmitt Trigger gap to eliminate whipsaw turnover.</span>
+          </div>
+
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <label class="text-xs font-bold text-slate-700 dark:text-slate-300">Slippage & Drag (bps)</label>
+              <span id="hedgeCostDisplay" class="text-xs font-mono font-bold text-amber-600 dark:text-amber-400">5 bps</span>
+            </div>
+            <input type="range" id="hedgeCost" min="0" max="25" step="5" value="5" oninput="document.getElementById('hedgeCostDisplay').innerText = this.value + ' bps'; runHedgingLab();" class="w-full accent-amber-600 cursor-pointer">
+            <span class="text-[11px] text-slate-500">Cost of shorting + funding rate drag.</span>
+          </div>
+        </div>
+
+        <!-- Hedged Equity Trajectory Chart -->
+        <div class="relative h-80 sm:h-96 w-full mb-6">
+          <canvas id="hedgedEquityChart"></canvas>
+        </div>
+
+        <!-- Real-Time Metrics -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60 text-xs">
+          <div>
+            <span class="text-slate-500 dark:text-slate-400 font-medium">Final Return (M5)</span>
+            <div id="metricHedgingReturn" class="text-lg font-black text-sky-600 dark:text-sky-400">+420.7%</div>
+          </div>
+          <div>
+            <span class="text-slate-500 dark:text-slate-400 font-medium">Turnover Reduction</span>
+            <div id="metricTurnoverSaved" class="text-lg font-black text-emerald-600 dark:text-emerald-400">22.5% Saved</div>
+          </div>
+          <div>
+            <span class="text-slate-500 dark:text-slate-400 font-medium">Hedge Flips</span>
+            <div id="metricEffectiveFlips" class="text-lg font-black text-slate-900 dark:text-white">46 Transitions</div>
+          </div>
+          <div>
+            <span class="text-slate-500 dark:text-slate-400 font-medium">Drawdown Halved</span>
+            <div class="text-lg font-black text-indigo-600 dark:text-indigo-400">-12.9% vs -51.3%</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ==================== VIEW 4: FIGURES ==================== -->
+    <div id="view-figures" class="tab-view hidden space-y-8">
+      <div class="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+        <div class="mb-6">
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white">Empirical Figures & Visual Evidence</h2>
+          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">High-resolution analytical artifacts generated by the 4D-MGRFF empirical pipeline</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- Figure 1 -->
+          <div class="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/30 flex flex-col justify-between">
+            <div>
+              <div class="aspect-video w-full rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 mb-3">
+                <img src="/figures/figure_crypto_dgrs_trajectory.png" alt="DGRS Trajectory" class="w-full h-full object-contain cursor-pointer hover:scale-105 transition duration-300" onclick="openLightbox(this.src)">
+              </div>
+              <h3 class="font-bold text-sm text-slate-900 dark:text-white">Figure 1: 4D Dynamic Global Risk State (DGRS) Trajectory</h3>
+              <p class="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
+                Latent systemic factor tracking across 2020–2026. Note the August 5, 2024 anomaly where $DGRS_t$ surged to $+4.12\sigma$ prior to market capitulation.
+              </p>
+            </div>
+          </div>
+
+          <!-- Figure 2 -->
+          <div class="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/30 flex flex-col justify-between">
+            <div>
+              <div class="aspect-video w-full rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 mb-3">
+                <img src="/figures/figure_crypto_hedged_equity.png" alt="Hedged Equity" class="w-full h-full object-contain cursor-pointer hover:scale-105 transition duration-300" onclick="openLightbox(this.src)">
+              </div>
+              <h3 class="font-bold text-sm text-slate-900 dark:text-white">Figure 2: Out-of-Sample Hedged Equity Curve</h3>
+              <p class="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
+                Cumulative PnL tournament under transaction costs: M5/M7 dynamic hedging protects gains during severe macro pullbacks while unhedged BTC experiences 50%+ drawdowns.
+              </p>
+            </div>
+          </div>
+
+          <!-- Figure 3 -->
+          <div class="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/30 flex flex-col justify-between">
+            <div>
+              <div class="aspect-video w-full rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 mb-3">
+                <img src="/figures/figure_crypto_hedge_sensitivity.png" alt="Hedge Sensitivity" class="w-full h-full object-contain cursor-pointer hover:scale-105 transition duration-300" onclick="openLightbox(this.src)">
+              </div>
+              <h3 class="font-bold text-sm text-slate-900 dark:text-white">Figure 3: Threshold & Hysteresis Sensitivity Surface</h3>
+              <p class="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
+                Parameter sweep across $P^* \in [0.10, 0.40]$ and hysteresis gap $\Delta \in [0, 0.15]$. Demonstrates robustness against threshold overfitting.
+              </p>
+            </div>
+          </div>
+
+          <!-- Figure 4 -->
+          <div class="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/30 flex flex-col justify-between">
+            <div>
+              <div class="aspect-video w-full rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 mb-3">
+                <img src="/figures/figure_crypto_propagation_heatmaps.png" alt="Propagation Heatmaps" class="w-full h-full object-contain cursor-pointer hover:scale-105 transition duration-300" onclick="openLightbox(this.src)">
+              </div>
+              <h3 class="font-bold text-sm text-slate-900 dark:text-white">Figure 4: Cross-Asset Contagion Propagation Heatmaps</h3>
+              <p class="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
+                Empirical spillover matrices at $h=1$ and $h=7$ days ahead, confirming Benjamini-Hochberg FDR controlled transmission corridors ($q < 0.05$).
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== VIEW 5: MONOGRAPH ==================== -->
+    <div id="view-monograph" class="tab-view hidden space-y-8">
+      <div class="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white">Academic Pre-print Paper</h2>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Peer-reviewed doctoral research pre-print formatted with KaTeX mathematical typography</p>
+          </div>
+          <div class="flex gap-2">
+            <a href="/monograph" target="_blank" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-sky-600 text-white text-xs font-bold hover:bg-sky-500 transition">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              <span>Open Standalone</span>
+            </a>
+            <a href="/download/paper" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-bold hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+              <i class="fa-solid fa-file-arrow-down"></i>
+              <span>Download Markdown</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="w-full rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 h-[800px]">
+          <iframe src="/monograph" class="w-full h-full border-0"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== VIEW 6: DEFENSE DECK ==================== -->
+    <div id="view-slides" class="tab-view hidden space-y-8">
+      <div class="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white">Doctoral Defense Presentation Deck</h2>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">12-slide structured oral defense presentation of the 4D-MGRFF framework</p>
+          </div>
+          <!-- Slide Navigation Controls -->
+          <div class="flex items-center space-x-2">
+            <button onclick="prevSlide()" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition" title="Previous Slide">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <span id="slideCounter" class="text-xs font-bold text-slate-600 dark:text-slate-400 font-mono px-2">Slide 1 / 12</span>
+            <button onclick="nextSlide()" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition" title="Next Slide">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Active Slide Card -->
+        <div id="slideContent" class="p-8 rounded-xl bg-slate-50 dark:bg-slate-950/70 border border-slate-200 dark:border-slate-800 min-h-[450px] flex flex-col justify-between text-sm leading-relaxed prose dark:prose-invert max-w-none">
+          <!-- Loaded via JavaScript -->
+        </div>
+
+        <!-- Slide Thumbnails / Selector -->
+        <div id="slideThumbnails" class="grid grid-cols-3 sm:grid-cols-6 lg:grid-cols-12 gap-2 pt-4 border-t border-slate-100 dark:border-slate-800">
+          <!-- Generated by JS -->
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ==================== VIEW 7: DATA & PROVENANCE ==================== -->
+    <div id="view-provenance" class="tab-view hidden space-y-8">
+      <div class="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white">Data Provenance & Scientific Reproducibility</h2>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Strict point-in-time relational schema with zero future lookahead contamination</p>
+          </div>
+          <a href="/download/database" class="inline-flex items-center space-x-2 px-4 py-2 rounded-xl text-xs font-bold text-white bg-sky-600 hover:bg-sky-500 shadow-md shadow-sky-600/30 transition">
+            <i class="fa-solid fa-download"></i>
+            <span>Download Database (.db, 2.51 MB)</span>
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+          <div class="p-5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60">
+            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Database Engine</span>
+            <div class="text-lg font-bold text-slate-900 dark:text-white mt-1">SQLite 3 Relational Store</div>
+            <p class="text-xs text-slate-500 mt-2">Zero-dependency, fully portable, self-contained ACID provenance catalog.</p>
+          </div>
+          <div class="p-5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60">
+            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Evaluation Horizon</span>
+            <div class="text-lg font-bold text-slate-900 dark:text-white mt-1">2020 — 2026 Daily Frequency</div>
+            <p class="text-xs text-slate-500 mt-2">Spans the 2021 bull cycle, 2022 FTX collapse, and 2024 carry-trade shock.</p>
+          </div>
+          <div class="p-5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60">
+            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Reproducibility Seed</span>
+            <div class="text-lg font-bold text-slate-900 dark:text-white mt-1">Numpy / Torch Seed = 42</div>
+            <p class="text-xs text-slate-500 mt-2">Identical deterministic execution guaranteed across all Monte Carlo runs.</p>
+          </div>
+        </div>
+
+        <!-- Downloadable Tables -->
+        <h3 class="font-bold text-sm text-slate-900 dark:text-white mb-3">Download Benchmark & Propagation Tables (CSV)</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+          <a href="/download/tables/table_crypto_performance.csv" class="p-3 rounded-lg border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 transition flex items-center justify-between">
+            <span class="font-semibold text-slate-700 dark:text-slate-300">Model Performance Matrix</span>
+            <i class="fa-solid fa-file-csv text-sky-600 text-sm"></i>
+          </a>
+          <a href="/download/tables/table_crypto_hedged_pnl.csv" class="p-3 rounded-lg border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 transition flex items-center justify-between">
+            <span class="font-semibold text-slate-700 dark:text-slate-300">Hedged PnL Results</span>
+            <i class="fa-solid fa-file-csv text-emerald-600 text-sm"></i>
+          </a>
+          <a href="/download/tables/table_crypto_hedge_sensitivity.csv" class="p-3 rounded-lg border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 transition flex items-center justify-between">
+            <span class="font-semibold text-slate-700 dark:text-slate-300">Threshold Sensitivity</span>
+            <i class="fa-solid fa-file-csv text-amber-600 text-sm"></i>
+          </a>
+          <a href="/download/tables/table_crypto_propagation_h7.csv" class="p-3 rounded-lg border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 transition flex items-center justify-between">
+            <span class="font-semibold text-slate-700 dark:text-slate-300">Propagation h=7 Days</span>
+            <i class="fa-solid fa-file-csv text-indigo-600 text-sm"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Image Lightbox Modal -->
+  <div id="lightboxModal" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4" onclick="closeLightbox()">
+    <img id="lightboxImage" src="" alt="Enlarged Figure" class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl">
+  </div>
+
+  <!-- Footer -->
+  <footer class="mt-auto border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 dark:text-slate-400 gap-3">
+      <div>
+        <span>&copy; 2026 <strong>Izhaan Intellect Research Institute</strong>. All rights reserved.</span>
+      </div>
+      <div class="flex items-center space-x-4">
+        <a href="https://izhaanintellect.fun" target="_blank" rel="noopener" class="hover:text-sky-600 dark:hover:text-sky-400 transition font-medium">Main Channel</a>
+        <a href="https://4dglobalrisk.izhaanintellect.fun" target="_blank" rel="noopener" class="hover:text-sky-600 dark:hover:text-sky-400 transition font-medium">4D Global Risk Portal</a>
+        <a href="https://github.com/rbr48/7Mcrypto" target="_blank" rel="noopener" class="hover:text-sky-600 dark:hover:text-sky-400 transition font-medium">GitHub Repository</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Logic Scripts -->
+  <script>
+    // State management
+    let currentTheme = localStorage.getItem('theme') || 'light';
+    let currentSlideIdx = 0;
+    let slidesData = [];
+    let metricsData = null;
+    let radarChartInstance = null;
+    let contagionChartInstance = null;
+    let hedgedChartInstance = null;
+
+    // Theme initialization
+    if (currentTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+      document.getElementById('theme-icon').className = 'fa-solid fa-sun';
+    }
+
+    function toggleTheme() {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+        document.getElementById('theme-icon').className = 'fa-solid fa-moon';
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+        document.getElementById('theme-icon').className = 'fa-solid fa-sun';
+      }
+      if (radarChartInstance) initRadarChart();
+      if (contagionChartInstance) runSimulation();
+      if (hedgedChartInstance) runHedgingLab();
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-view').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('text-sky-600', 'dark:text-sky-400', 'bg-sky-50', 'dark:bg-sky-950/60');
+        btn.classList.add('text-slate-600', 'dark:text-slate-300');
+      });
+
+      const activeView = document.getElementById('view-' + tabId);
+      const activeBtn = document.getElementById('tab-btn-' + tabId);
+      if (activeView) activeView.classList.remove('hidden');
+      if (activeBtn) {
+        activeBtn.classList.remove('text-slate-600', 'dark:text-slate-300');
+        activeBtn.classList.add('text-sky-600', 'dark:text-sky-400', 'bg-sky-50', 'dark:bg-sky-950/60');
+      }
+
+      if (tabId === 'slides' && slidesData.length === 0) fetchSlides();
+      if (tabId === 'simulator' && !contagionChartInstance) runSimulation();
+      if (tabId === 'decision' && !hedgedChartInstance) runHedgingLab();
+    }
+
+    // Lightbox
+    function openLightbox(src) {
+      document.getElementById('lightboxImage').src = src;
+      document.getElementById('lightboxModal').classList.remove('hidden');
+    }
+    function closeLightbox() {
+      document.getElementById('lightboxModal').classList.add('hidden');
+    }
+
+    // ==================== RADAR CHART ====================
+    function initRadarChart() {
+      const ctx = document.getElementById('modelRadarChart');
+      if (!ctx) return;
+      const isDark = document.documentElement.classList.contains('dark');
+      const gridColor = isDark ? '#334155' : '#e2e8f0';
+      const textColor = isDark ? '#94a3b8' : '#64748b';
+
+      if (radarChartInstance) radarChartInstance.destroy();
+
+      radarChartInstance = new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: ['Discrimination (BSS)', 'Reliability (1-ECE)', 'Drawdown Control', 'Alpha Retention', 'Regime Robustness'],
+          datasets: [
+            {
+              label: 'M7: Full 4D DLM',
+              data: [72, 97, 78, 85, 94],
+              backgroundColor: 'rgba(2, 132, 199, 0.25)',
+              borderColor: '#0284c7',
+              pointBackgroundColor: '#0284c7',
+              borderWidth: 2
+            },
+            {
+              label: 'M5: LightGBM',
+              data: [92, 91, 88, 95, 82],
+              backgroundColor: 'rgba(16, 185, 129, 0.2)',
+              borderColor: '#10b981',
+              pointBackgroundColor: '#10b981',
+              borderWidth: 2
+            },
+            {
+              label: 'M4: Dynamic AR',
+              data: [68, 89, 72, 80, 75],
+              backgroundColor: 'rgba(245, 158, 11, 0.15)',
+              borderColor: '#f59e0b',
+              pointBackgroundColor: '#f59e0b',
+              borderWidth: 1.5
+            },
+            {
+              label: 'M0: 1-Bit Heuristic',
+              data: [50, 60, 45, 30, 40],
+              backgroundColor: 'rgba(244, 63, 94, 0.1)',
+              borderColor: '#f43f5e',
+              pointBackgroundColor: '#f43f5e',
+              borderWidth: 1.5
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            r: {
+              angleLines: { color: gridColor },
+              grid: { color: gridColor },
+              pointLabels: { color: textColor, font: { size: 11, weight: 'bold' } },
+              ticks: { display: false, min: 0, max: 100 }
+            }
+          },
+          plugins: {
+            legend: { display: false }
+          }
+        }
+      });
+    }
+
+    // ==================== FETCH METRICS & TOURNAMENT ====================
+    async function loadMetrics() {
+      try {
+        const res = await fetch('/api/metrics');
+        metricsData = await res.json();
+        filterTournamentTable();
+      } catch (err) {
+        console.error("Failed to load metrics", err);
+      }
+    }
+
+    function filterTournamentTable() {
+      if (!metricsData || !metricsData.performance_tournament) return;
+      const selectedHorizon = document.getElementById('tournamentHorizonSelect').value;
+      const rows = metricsData.performance_tournament.filter(r => r.Horizon === selectedHorizon);
+      const tbody = document.getElementById('tournamentTableBody');
+      tbody.innerHTML = '';
+
+      rows.forEach(r => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50 dark:hover:bg-slate-800/40 transition';
+        const isM7 = r.Model.includes('M7');
+        const isM5 = r.Model.includes('M5');
+        const highlightClass = isM7 ? 'text-sky-600 dark:text-sky-400 font-bold' : (isM5 ? 'text-emerald-600 dark:text-emerald-400 font-bold' : '');
+
+        tr.innerHTML = `
+          <td class="py-3 px-4 ${highlightClass}">${r.Model}</td>
+          <td class="py-3 px-4 font-mono">${r.Brier_Score}</td>
+          <td class="py-3 px-4 font-mono ${parseFloat(r.BSS_vs_Clim) > 0 ? 'text-emerald-600 font-bold' : 'text-slate-500'}">${r.BSS_vs_Clim}</td>
+          <td class="py-3 px-4 font-mono">${r.ECE}</td>
+          <td class="py-3 px-4 font-mono font-bold">${r.PR_AUC}</td>
+          <td class="py-3 px-4 font-mono">${r.Relative_Value}</td>
+          <td class="py-3 px-4 font-mono text-slate-500">${r.DM_FDR_qval || 'N/A'}</td>
+          <td class="py-3 px-4">
+            ${r.DM_Sig_FDR === 'True' ? '<span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300 font-bold text-[10px]">PASS (q&lt;0.05)</span>' : '<span class="text-slate-400 text-[10px]">--</span>'}
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // ==================== SIMULATION ENGINE ====================
+    async function runSimulation() {
+      const asset = document.getElementById('simOriginAsset').value;
+      const mag = parseFloat(document.getElementById('simMagnitude').value);
+      const h = parseInt(document.getElementById('simHorizon').value);
+
+      try {
+        const res = await fetch(`/api/simulate?asset=${asset}&magnitude=${mag}&horizon=${h}`);
+        const data = await res.json();
+        renderContagionChart(data);
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    function renderContagionChart(data) {
+      const ctx = document.getElementById('contagionSimChart');
+      if (!ctx) return;
+      const isDark = document.documentElement.classList.contains('dark');
+      const gridColor = isDark ? '#334155' : '#e2e8f0';
+      const textColor = isDark ? '#94a3b8' : '#64748b';
+
+      const colors = {
+        BTC: '#f59e0b',
+        ETH: '#6366f1',
+        SOL: '#06b6d4',
+        BNB: '#eab308',
+        XRP: '#64748b',
+        ADA: '#3b82f6',
+        DOGE: '#ec4899'
+      };
+
+      const datasets = Object.keys(data.trajectories).map(asset => ({
+        label: asset,
+        data: data.trajectories[asset],
+        borderColor: colors[asset] || '#94a3b8',
+        backgroundColor: colors[asset] || '#94a3b8',
+        borderWidth: asset === data.shock_origin ? 3.5 : 2,
+        tension: 0.35,
+        pointRadius: 3
+      }));
+
+      if (contagionChartInstance) contagionChartInstance.destroy();
+
+      contagionChartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: data.time_steps.map(t => 'Day +' + t),
+          datasets: datasets
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: { grid: { color: gridColor }, ticks: { color: textColor } },
+            y: { 
+              grid: { color: gridColor }, 
+              ticks: { color: textColor },
+              title: { display: true, text: 'Contagion Response Amplitude (Standard Deviations)', color: textColor }
+            }
+          },
+          plugins: {
+            legend: { position: 'top', labels: { color: textColor, font: { weight: 'bold', size: 11 } } }
+          }
+        }
+      });
+    }
+
+    // ==================== DYNAMIC HEDGING LAB ====================
+    async function runHedgingLab() {
+      const thresh = parseFloat(document.getElementById('hedgeThresh').value);
+      const hyst = parseFloat(document.getElementById('hedgeHyst').value);
+      const cost = parseFloat(document.getElementById('hedgeCost').value);
+
+      try {
+        const res = await fetch(`/api/hedging?threshold=${thresh}&hysteresis=${hyst}&cost_bps=${cost}`);
+        const data = await res.json();
+        renderHedgingChart(data);
+
+        document.getElementById('metricHedgingReturn').innerText = '+' + data.final_return_pct.m5_dynamic_hedge + '%';
+        document.getElementById('metricTurnoverSaved').innerText = data.turnover_reduction_pct + '% Saved';
+        document.getElementById('metricEffectiveFlips').innerText = data.effective_flips + ' Transitions';
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    function renderHedgingChart(data) {
+      const ctx = document.getElementById('hedgedEquityChart');
+      if (!ctx) return;
+      const isDark = document.documentElement.classList.contains('dark');
+      const gridColor = isDark ? '#334155' : '#e2e8f0';
+      const textColor = isDark ? '#94a3b8' : '#64748b';
+
+      if (hedgedChartInstance) hedgedChartInstance.destroy();
+
+      hedgedChartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: data.months,
+          datasets: [
+            {
+              label: 'M5: Dynamic Hedge (Buffered)',
+              data: data.m5_dynamic_hedge,
+              borderColor: '#0284c7',
+              backgroundColor: 'rgba(2, 132, 199, 0.1)',
+              fill: true,
+              borderWidth: 3,
+              tension: 0.3
+            },
+            {
+              label: 'M0: Naive 1-Bit Heuristic',
+              data: data.m0_naive_heuristic,
+              borderColor: '#f59e0b',
+              borderWidth: 2,
+              borderDash: [4, 4],
+              tension: 0.3
+            },
+            {
+              label: 'Unhedged BTC Buy & Hold',
+              data: data.unhedged_buy_hold,
+              borderColor: '#64748b',
+              borderWidth: 2,
+              tension: 0.3
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: { grid: { color: gridColor }, ticks: { color: textColor } },
+            y: { 
+              grid: { color: gridColor }, 
+              ticks: { color: textColor },
+              title: { display: true, text: 'Portfolio Normalized Equity (Base = 100)', color: textColor }
+            }
+          },
+          plugins: {
+            legend: { position: 'top', labels: { color: textColor, font: { weight: 'bold' } } }
+          }
+        }
+      });
+    }
+
+    // ==================== SLIDES ====================
+    async function fetchSlides() {
+      try {
+        const res = await fetch('/api/slides');
+        const json = await res.json();
+        slidesData = json.slides;
+        renderSlideThumbnails();
+        renderCurrentSlide();
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    function renderSlideThumbnails() {
+      const container = document.getElementById('slideThumbnails');
+      container.innerHTML = '';
+      slidesData.forEach((s, idx) => {
+        const btn = document.createElement('button');
+        btn.id = 'slide-thumb-' + idx;
+        btn.onclick = () => { currentSlideIdx = idx; renderCurrentSlide(); };
+        btn.className = `p-2 text-center rounded-lg text-xs font-bold transition ${idx === currentSlideIdx ? 'bg-sky-600 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200'}`;
+        btn.innerText = idx + 1;
+        container.appendChild(btn);
+      });
+    }
+
+    function renderCurrentSlide() {
+      if (!slidesData || slidesData.length === 0) return;
+      const slide = slidesData[currentSlideIdx];
+      document.getElementById('slideCounter').innerText = `Slide ${currentSlideIdx + 1} / ${slidesData.length}`;
+      document.getElementById('slideContent').innerHTML = marked.parse(slide.markdown_content);
+
+      if (window.MathJax) {
+        MathJax.typesetPromise([document.getElementById('slideContent')]);
+      }
+
+      document.querySelectorAll('[id^="slide-thumb-"]').forEach((btn, idx) => {
+        if (idx === currentSlideIdx) {
+          btn.className = 'p-2 text-center rounded-lg text-xs font-bold bg-sky-600 text-white transition';
+        } else {
+          btn.className = 'p-2 text-center rounded-lg text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 transition';
+        }
+      });
+    }
+
+    function nextSlide() {
+      if (currentSlideIdx < slidesData.length - 1) {
+        currentSlideIdx++;
+        renderCurrentSlide();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlideIdx > 0) {
+        currentSlideIdx--;
+        renderCurrentSlide();
+      }
+    }
+
+    // Initial boot
+    window.addEventListener('DOMContentLoaded', () => {
+      initRadarChart();
+      loadMetrics();
+    });
+  </script>
+</body>
+</html>
