@@ -293,16 +293,12 @@ def download_table(filename: str):
 def view_monograph():
     """Serves the standalone HTML academic paper."""
     html_path = STATIC_DIR / "preprint.html"
-    if not html_path.exists():
-        # Fallback to documentary preprint HTML
-        doc_html = PAPER_DIR / "crypto_risk_preprint.html"
-        if doc_html.exists():
-            with open(doc_html, "r", encoding="utf-8") as f:
-                return f.read()
-        raise HTTPException(status_code=404, detail="HTML paper not found")
-
-    with open(html_path, "r", encoding="utf-8") as f:
-        return f.read()
+    if html_path.exists():
+        return FileResponse(path=str(html_path), media_type="text/html")
+    doc_html = PAPER_DIR / "crypto_risk_preprint.html"
+    if doc_html.exists():
+        return FileResponse(path=str(doc_html), media_type="text/html")
+    raise HTTPException(status_code=404, detail="HTML paper not found")
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -311,7 +307,6 @@ def index():
     """Serves the main research portal."""
     index_file = STATIC_DIR / "index.html"
     if not index_file.exists():
-        return HTMLResponse("<h1>4D-MGRFF Crypto Risk Platform</h1><p>Static index not found.</p>")
+        return HTMLResponse("<h1>4D-MGRFF Crypto Risk Platform</h1><p>Static index not found.</p>", media_type="text/html")
+    return FileResponse(path=str(index_file), media_type="text/html")
 
-    with open(index_file, "r", encoding="utf-8") as f:
-        return f.read()
