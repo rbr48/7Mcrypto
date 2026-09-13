@@ -25,7 +25,7 @@ ROOT_DIR = Path(__file__).resolve().parent.parent
 RESULTS_DIR = ROOT_DIR / "results"
 DOCS_DIR = ROOT_DIR / "docs"
 DATA_DIR = ROOT_DIR / "data"
-PAPER_DIR = ROOT_DIR / "documentary" / "08_paper"
+PAPER_DIR = ROOT_DIR / "thesis"
 STATIC_DIR = Path(__file__).resolve().parent / "static"
 
 app = FastAPI(

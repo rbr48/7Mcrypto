@@ -14,7 +14,7 @@ COPY web/ ./web/
 COPY results/ ./results/
 COPY docs/ ./docs/
 COPY data/ ./data/
-COPY documentary/ ./documentary/
+COPY thesis/ ./thesis/
 
 EXPOSE 8000
 
